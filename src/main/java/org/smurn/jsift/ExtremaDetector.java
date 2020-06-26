@@ -109,7 +109,7 @@ public class ExtremaDetector implements KeypointDetector {
 
                 if (isExtremum) {
                     Point2D coords = center.toOriginal(
-                            new Point2D.Double(row, col));
+                            new Point2D.Double(col, row));
                     ScaleSpacePoint point = new ScaleSpacePoint(
                             coords.getX(), coords.getY(), center.getSigma());
                     points.add(point);
