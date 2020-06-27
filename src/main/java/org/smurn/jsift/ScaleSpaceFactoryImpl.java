@@ -115,7 +115,12 @@ public class ScaleSpaceFactoryImpl implements ScaleSpaceFactory {
             // get the scale-image which has twice the sigma as the bases for
             // the next octave.
             Image twiceBlurred = octave.getScaleImages().get(scalesPerOctave);
-            startImage = downScaler.downScale(twiceBlurred);
+            Image downImage = downScaler.downScale(twiceBlurred);
+            if( downImage.getWidth()==startImage.getWidth() ) {       
+            	//fix bug: w 1 h 1 infinite loop.
+            	break ;
+            }
+            startImage = downImage ;
         }
 
         return new ScaleSpace(octaves);
